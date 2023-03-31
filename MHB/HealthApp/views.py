@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import CreateView
-from HealthApp import forms
-from time import sleep
+from HealthApp import forms,secrets
 import openai
-openai.api_key = "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"
-messages = [{"role": "system", "content": "You are an empathetic friend that listens and provides guidance only, you respond to no other questions other than emotional ones."}]
+openai.api_key =  secrets.API_KEY
+messages = [{"role": "system", "content": "You are a therapist, you only provide guidance on mental health and no other domain strictly."}]
 
 def CustomChatGPT(user_input):
     messages.append({"role": "user", "content": user_input})
