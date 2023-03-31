@@ -9,7 +9,8 @@ class User(models.Model):
     concerns = models.CharField(max_length=256)
 
 
-class Therapists(models.Model):
+
+class Therapist(models.Model):
     full_name = models.CharField(null = False,blank = False,max_length=80)
     phone = models.IntegerField(null = False,blank = False,unique = True)
     email = models.EmailField(unique=True, max_length=254)
