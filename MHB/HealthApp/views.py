@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import CreateView
 from HealthApp import forms
+from time import sleep
 import openai
-openai.api_key = "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"
+openai.api_key = "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"
 messages = [{"role": "system", "content": "You are an empathetic friend that listens and provides guidance only, you respond to no other questions other than emotional ones."}]
 
 def CustomChatGPT(user_input):
@@ -17,15 +18,16 @@ def CustomChatGPT(user_input):
 
 
     
-def HomePage(request):
+def AIView(request):
     if request.method == "POST":
         chat_form = forms.InputForm(request.POST)
 
         if chat_form.is_valid():
             param = chat_form.cleaned_data['text']
+            print(param)
             response = CustomChatGPT(param)
             print(response)
-        return render(request,'ai.html',{'form':forms.InputForm})
+        return render(request,'ai.html',{'response':response,'form':forms.InputForm})
         
         
         # render(request,'ai.html',{'response':response})
