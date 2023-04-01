@@ -23,26 +23,35 @@
 
     <div class="container mb-4 mt-5 p-5 bg-success text-light rounded-5">
         <h1>Your Mental Health Assistant!</h1>
-        <p>Share anything, I will do my best to help you out</p>
+        <h2>Share anything, I will do my best to help you out</h2>
         <form method="post">
             {% csrf_token %}
             <div class="mb-3">
-              <label for="pwd" class="form-label">Enter Your Concerns Here my Friend!</label>
                 {{ form.as_p }}
             </div>
-            
+
             <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+        </form>
 
     </div>
 
     {% if response %}
     <div class="container response mb-4 mt-4 p-4 bg-dark text-light rounded-5">
-            <p>{{ response }}</p>
+        <h4>{{ response }}</h4>
     </div>
     {% endif %}
 
 
+    <div class="container response mb-4 mt-5 p-4 bg-danger text-light rounded-5">
+
+        <h2>Not satisfied with the AI? Refer to our available therapists.</h2>
+        <button type="button" class="btn btn-primary" >
+
+            <a href="{% url 'therapist' %}" style="color: aliceblue;text-decoration: none;">Connect with a Therapist</a>
+
+        </button>
+
+    </div>
 
 </body>
 

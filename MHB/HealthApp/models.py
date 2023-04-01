@@ -11,6 +11,7 @@ class User(models.Model):
     user = models.OneToOneField(User, 
     on_delete=models.CASCADE,
     primary_key=True)
+    username = models.CharField(max_length=256,unique=True,blank=False,null=True)
     concerns = models.CharField(max_length=256)
     def __str__(self):
         return "{}".format(self.user)

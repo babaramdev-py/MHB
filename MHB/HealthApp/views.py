@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, TemplateView, ListView
 from HealthApp import forms,secrets
+from .models import Therapist
 import openai
 openai.api_key =  secrets.API_KEY
 messages = [{"role": "system", "content": "You are a therapist, you only provide guidance on mental health and no other domain strictly."}]
@@ -33,3 +34,10 @@ def AIView(request):
     else:
         return render(request,'ai.html',{'form':forms.InputForm})
 
+class TherapistListView(ListView):
+    model = Therapist
+    template_name = 'therapist_list.html'
+    context_object_name = 'therapists'
+
+    def get_queryset(self):
+        return Therapist.objects.all()
